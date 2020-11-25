@@ -12,13 +12,22 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
   state = {
     ingredients: {
-      salad: 1,
-      bacon: 1,
-      cheese: 2,
-      meat: 2,
+      salad: 0,
+      bacon: 0,
+      cheese: 0,
+      meat: 0,
     },
     totalPrice: 4,
+    purchasable: false,
   };
+
+  updatePurchaseState() {
+    const returnBoolean = Object.values(this.state.ingredients).some(
+      (amount) => amount > 0
+    );
+
+    this.setState({ purchasable: returnBoolean });
+  }
 
   addIngredientHandler = (type) => {
     this.setState((prevState) => {
@@ -58,6 +67,7 @@ class BurgerBuilder extends Component {
           ingredientAdded={this.addIngredientHandler}
           ingredientRemove={this.removeIngredientHandler}
           disabled={disabledInfo}
+          purchasable={this.state.purchasable}
           price={this.state.totalPrice}
         />
       </>
