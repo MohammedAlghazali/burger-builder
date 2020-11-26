@@ -1,10 +1,11 @@
 import classes from './Toolbar.module.css';
+import Logo from '../../../components/Logo/Logo';
 
 console.log('classes from Toolbar', classes);
 const toolbar = (props) => (
   <header className={classes.Toolbar}>
     <div>MENU</div>
-    <div>LOGO</div>
+    <Logo />
     <nav>...</nav>
   </header>
 );
